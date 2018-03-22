@@ -6,7 +6,7 @@
   picker.constant('dateRangePickerConfig', {
     clearLabel: 'Clear',
     locale: {
-      separator: ' - ',
+      separator: '-',
       format: 'YYYY-MM-DD'
     }
   });
