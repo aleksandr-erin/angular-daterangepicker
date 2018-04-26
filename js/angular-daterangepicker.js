@@ -6,7 +6,7 @@
   picker.constant('dateRangePickerConfig', {
     clearLabel: 'Clear',
     locale: {
-      separator: ' - ',
+      separator: '-',
       format: 'YYYY-MM-DD'
     }
   });
@@ -158,6 +158,14 @@
         $scope.$watch('model.endDate', function(n) {
           return _setEndDate(n);
         });
+        if (opts.singleDatePicker) {
+          $scope.$watch('model', function(n) {
+            if (!n.startDate && !n.endDate) {
+              _setEndDate(n);
+              _setStartDate(n);
+            }
+          });
+        }
         _initBoundaryField = function(field, validator, modelField, optName) {
           if (attrs[field]) {
             modelCtrl.$validators[field] = function(value) {
