@@ -121,6 +121,13 @@ picker.directive 'dateRangePicker', ($compile, $timeout, $parse, dateRangePicker
       # watchers that reinit will be attached to old daterangepicker instance.
       _picker = el.data('daterangepicker')
 
+      el.on 'apply.daterangepicker', (e, picker) ->
+        if !$scope.model or !$scope.model.startDate or !$scope.model.endDate
+          $scope.model =
+            startDate: picker.startDate
+            endDate: picker.endDate
+        return
+
       # Ability to attach event handlers. See https://github.com/fragaria/angular-daterangepicker/pull/62
       # Revised
 
