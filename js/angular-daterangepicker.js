@@ -142,7 +142,7 @@
           });
           _picker = el.data('daterangepicker');
           el.on('apply.daterangepicker', function(e, picker) {
-            if (!$scope.model || !$scope.model.startDate || !$scope.model.endDate) {
+            if (!$scope.model || !$scope.model.startDate || !$scope.model.endDate || !opts.singleDatePicker) {
               $scope.model = {
                 startDate: picker.startDate,
                 endDate: picker.endDate
