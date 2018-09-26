@@ -147,7 +147,7 @@ picker.directive 'dateRangePicker', ($compile, $timeout, $parse, dateRangePicker
 
     if opts.singleDatePicker
       $scope.$watch 'model', (n) ->
-        if !n.startDate and !n.endDate
+        if n and !n.startDate and !n.endDate
           _setEndDate n
           _setStartDate n
         return
