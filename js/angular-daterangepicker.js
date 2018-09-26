@@ -168,7 +168,7 @@
         });
         if (opts.singleDatePicker) {
           $scope.$watch('model', function(n) {
-            if (!n.startDate && !n.endDate) {
+            if (n && !n.startDate && !n.endDate) {
               _setEndDate(n);
               _setStartDate(n);
             }
