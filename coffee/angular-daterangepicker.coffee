@@ -92,7 +92,7 @@ picker.directive 'dateRangePicker', ($compile, $timeout, $parse, dateRangePicker
       # Parse the string value
       f = (value) ->
         moment(value, opts.locale.format)
-      objValue =
+      objValue = if opts.singleDatePicker then null else
         startDate: null
         endDate: null
       if angular.isString(val) and val.length > 0

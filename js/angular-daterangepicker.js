@@ -110,7 +110,7 @@
           f = function(value) {
             return moment(value, opts.locale.format);
           };
-          objValue = {
+          objValue = opts.singleDatePicker ? null : {
             startDate: null,
             endDate: null
           };
