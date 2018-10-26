@@ -11,7 +11,7 @@
     }
   });
 
-  picker.directive('dateRangePicker', ['$compile', '$timeout', '$parse', 'dateRangePickerConfig', function($compile, $timeout, $parse, dateRangePickerConfig) {
+  picker.directive('dateRangePicker', function($compile, $timeout, $parse, dateRangePickerConfig) {
     return {
       require: 'ngModel',
       restrict: 'A',
@@ -110,7 +110,7 @@
           f = function(value) {
             return moment(value, opts.locale.format);
           };
-          objValue = {
+          objValue = opts.singleDatePicker ? null : {
             startDate: null,
             endDate: null
           };
@@ -220,6 +220,6 @@
         });
       }
     };
-  }]);
+  });
 
 }).call(this);
