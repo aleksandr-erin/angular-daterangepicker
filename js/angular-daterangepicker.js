@@ -147,6 +147,9 @@
                 startDate: picker.startDate,
                 endDate: picker.endDate
               };
+              $timeout(function() {
+                $scope.$apply();
+              });
             }
           });
           results = [];
