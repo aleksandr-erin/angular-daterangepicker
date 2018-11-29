@@ -126,6 +126,7 @@ picker.directive 'dateRangePicker', ($compile, $timeout, $parse, dateRangePicker
           $scope.model =
             startDate: picker.startDate
             endDate: picker.endDate
+          $timeout -> $scope.$apply()
         return
 
       # Ability to attach event handlers. See https://github.com/fragaria/angular-daterangepicker/pull/62
