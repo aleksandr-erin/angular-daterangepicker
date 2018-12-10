@@ -143,7 +143,7 @@
           _picker = el.data('daterangepicker');
           el.on('apply.daterangepicker', function(e, picker) {
             if (opts.singleDatePicker) {
-              if (!$scope.model) {
+              if (!$scope.model || angular.isString($scope.model)) {
                 $scope.model = picker.startDate;
                 $timeout(function() {
                   $scope.$apply();
