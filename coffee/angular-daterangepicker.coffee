@@ -123,7 +123,7 @@ picker.directive 'dateRangePicker', ($compile, $timeout, $parse, dateRangePicker
 
       el.on 'apply.daterangepicker', (e, picker) ->
         if opts.singleDatePicker
-          if !$scope.model
+          if !$scope.model or angular.isString($scope.model)
             $scope.model = picker.startDate
             $timeout -> $scope.$apply()
         else if !$scope.model or !$scope.model.startDate or !$scope.model.endDate
