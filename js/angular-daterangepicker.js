@@ -143,17 +143,32 @@
           _picker = el.data('daterangepicker');
           el.on('apply.daterangepicker', function(e, picker) {
             if (opts.singleDatePicker) {
-              if (!$scope.model || angular.isString($scope.model)) {
+              if (!$scope.model || angular.isString($scope.model) || opts.maxDate || opts.minDate) {
                 $scope.model = picker.startDate;
                 $timeout(function() {
                   $scope.$apply();
                 });
               }
-            } else if (!$scope.model || !$scope.model.startDate || !$scope.model.endDate) {
+            } else if (!$scope.model || !$scope.model.startDate || !$scope.model.endDate || opts.maxDate || opts.minDate) {
               $scope.model = {
                 startDate: picker.startDate,
                 endDate: picker.endDate
               };
+              $timeout(function() {
+                $scope.$apply();
+              });
+            }
+          });
+          el.on('cancel.daterangepicker outsideClick.daterangepicker', function(e, picker) {
+            if ($scope.model && (opts.maxDate || opts.minDate)) {
+              if (opts.singleDatePicker) {
+                $scope.model = picker.startDate;
+              } else if ($scope.model.startDate && $scope.model.endDate) {
+                $scope.model = {
+                  startDate: picker.startDate,
+                  endDate: picker.endDate
+                };
+              }
               $timeout(function() {
                 $scope.$apply();
               });

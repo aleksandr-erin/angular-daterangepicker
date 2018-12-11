@@ -123,13 +123,24 @@ picker.directive 'dateRangePicker', ($compile, $timeout, $parse, dateRangePicker
 
       el.on 'apply.daterangepicker', (e, picker) ->
         if opts.singleDatePicker
-          if !$scope.model or angular.isString($scope.model)
+          if !$scope.model or angular.isString($scope.model) or opts.maxDate or opts.minDate
             $scope.model = picker.startDate
             $timeout -> $scope.$apply()
-        else if !$scope.model or !$scope.model.startDate or !$scope.model.endDate
+        else if !$scope.model or !$scope.model.startDate or !$scope.model.endDate or opts.maxDate or opts.minDate
           $scope.model =
             startDate: picker.startDate
             endDate: picker.endDate
+          $timeout -> $scope.$apply()
+        return
+
+      el.on 'cancel.daterangepicker outsideClick.daterangepicker', (e, picker) ->
+        if $scope.model and (opts.maxDate or opts.minDate)
+          if opts.singleDatePicker
+            $scope.model = picker.startDate;
+          else if $scope.model.startDate && $scope.model.endDate
+            $scope.model =
+              startDate: picker.startDate,
+              endDate: picker.endDate
           $timeout -> $scope.$apply()
         return
 
