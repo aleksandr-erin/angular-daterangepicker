@@ -216,7 +216,7 @@
           $scope.$watch('opts', function(newOpts) {
             opts = _mergeOpts(opts, newOpts);
             return _init();
-          }, true);
+          });
         }
         if (attrs.clearable) {
           $scope.$watch('clearable', function(newClearable) {

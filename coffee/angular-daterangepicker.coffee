@@ -184,7 +184,6 @@ picker.directive 'dateRangePicker', ($compile, $timeout, $parse, dateRangePicker
       $scope.$watch 'opts', (newOpts) ->
         opts = _mergeOpts(opts, newOpts)
         _init()
-      , true
 
     # Watch clearable flag
     if attrs.clearable
