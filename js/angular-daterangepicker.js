@@ -24,6 +24,9 @@
       },
       link: function($scope, element, attrs, modelCtrl) {
         var _clear, _init, _initBoundaryField, _mergeOpts, _picker, _setDatePoint, _setEndDate, _setStartDate, _validate, _validateMax, _validateMin, customOpts, el, opts;
+        if (attrs.dateRangePicker === 'false') {
+          return;
+        }
         _mergeOpts = function() {
           var extend, localeExtend;
           localeExtend = angular.extend.apply(angular, Array.prototype.slice.call(arguments).map(function(opt) {
@@ -146,7 +149,7 @@
               if (!$scope.model || angular.isString($scope.model) || opts.maxDate || opts.minDate) {
                 $scope.model = picker.startDate;
                 $timeout(function() {
-                  $scope.$apply();
+                  return $scope.$apply();
                 });
               }
             } else if (!$scope.model || !$scope.model.startDate || !$scope.model.endDate || opts.maxDate || opts.minDate) {
@@ -155,7 +158,7 @@
                 endDate: picker.endDate
               };
               $timeout(function() {
-                $scope.$apply();
+                return $scope.$apply();
               });
             }
           });
@@ -170,7 +173,7 @@
                 };
               }
               $timeout(function() {
-                $scope.$apply();
+                return $scope.$apply();
               });
             }
           });
